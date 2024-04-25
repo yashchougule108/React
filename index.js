@@ -1,13 +1,59 @@
-// import React from "react";
-// import ReactDOM from 'react-dom';
 
-// const myElement = <h1> I Love JSX! </h1>
-
-// const root =ReactDOM.createRoot(document.getElementById("root"));
-// root.render(myElement); 
-import React from "react";
+import React,{Suspense, lazy}from "react";
 import ReactDOM from "react-dom";
+import Header from "./src/components/Header";
+import Body from "./src/components/Body";
+import { createBrowserRouter,RouterProvider ,Outlet} from "react-router-dom";
+import About from "./src/components/About";
+import Contact from "./src/components/Contact";
+import Error from "./src/components/Error";
+import RestaurantMenu from "./src/components/RestaurantMenu";
+//import Grocery from "./components/Grocery";
 
-const myElement = <h1>I Love JSX!</h1>;
+//chunking
+//dynamic bundling
+//code splitting
+//lazy loading
+//on demand loading
+//dynamic import 
 
-ReactDOM.render(myElement, document.getElementById("root"));
+const Grocery=lazy(()=>import("./src/components/Grocery"));
+
+const AppLayout=()=>{
+    return (
+        <div className="app">
+            <Header/>
+            <Outlet/>
+        
+
+        </div>
+
+    )
+}
+const appRouter=createBrowserRouter([
+    {
+        path:"/",
+        element:<AppLayout/>,
+        children:[{
+            path:"/",
+            element:<Body/>
+        },{
+            path:"/about",
+            element:<About/> 
+        },{
+            path:"/contact",
+            element:<Contact/>
+        },{
+            path:"/grocery",
+            element:<Suspense fallback={<h1>Loading...</h1>}><Grocery/></Suspense>
+        },
+        {
+            path:"/restaurants/:resId",
+            element:<RestaurantMenu/>
+        }
+
+        ],
+        errorElement:<Error/>
+    }
+])
+ReactDOM.render(<RouterProvider router={appRouter}/>,document.getElementById("root"));
