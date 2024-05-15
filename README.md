@@ -102,3 +102,14 @@ import <name of component> from <path>
 
 //react context
 //it is global place to put data that will be  accessible  from anywheref
+
+
+//Redux toolkit
+- install reduxtoolkit and react-redux
+
+add button-->dispatch action-->reducer-->redux store-->selector to read
+
+# Types of testing(developer)
+-unit testing
+-integration testing
+-end to end testing

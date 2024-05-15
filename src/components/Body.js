@@ -2,9 +2,10 @@ import Loading from "./Loading";
 import RestaurantCard ,{withPromotedLabel}from "./RestaurantCard";
 //import Loading from "./Loading";
 import Shimmer from "./Shimmer"
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 // const showObj=[{
     
 //     "info": {
@@ -1787,6 +1788,8 @@ const Body=()=>{
     const [filteredList,setFilteredList]=useState([]);
     const [searchTxt,setSearchText]=useState("");
     
+    const {setUserInfo,loggedInUser}=useContext(userContext);
+    
     useEffect(()=>{
       fetchData();
     },[])
@@ -1831,6 +1834,10 @@ const Body=()=>{
                     setFilteredList(filteredList);
 
                 }}>Top Rated</button>
+            </div>
+            <div className="m-4 p-4 flex" >
+              <label>userName:</label>
+              <input type="text" className="search-box rounded-md border border-black" value={loggedInUser} onChange={(e)=>setUserInfo(e.target.value)}></input>
             </div>
             
             </div>

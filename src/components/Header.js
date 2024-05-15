@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
+import userInfo from "../utils/userContext";
+import { useSelector } from "react-redux";
+
 
  const Header=()=>{
     const [btnName , setbtnName]=useState("Login");
@@ -8,9 +12,14 @@ import useOnlineStatus from "../utils/useOnlineStatus";
     //if the dependency array is empty =>use effect is called on initial render(just once)
     //if dependency array is not empty then it is called everytime  is upadtes based on the dependencyf
     const onlineStatus=useOnlineStatus();
+    const {loggedInUser}=useContext(userContext);
+    //console.log(loggedInUser);
     //useEffect(()=>{
 
    // },[])
+   //subscribing to the stor using selector
+   const cartItems=useSelector((store)=>store.cart.items);
+   console.log(cartItems);
     return (
         <div className="flex justify-between border border-black m-2" >
             <div className="m-4">
@@ -26,11 +35,12 @@ import useOnlineStatus from "../utils/useOnlineStatus";
                     <li><Link style={{textDecoration:"none"}} to={"/contact"}>Contact Us</Link></li>
                     <li ><Link style={{textDecoration:"none"}} to={"/grocery"}>Grocery</Link></li>
                      
-                    <li>Cart</li>
+                    <li><Link to={"/cart"} >Cart - ({cartItems.length} items)</Link></li>
                     <button  onClick={()=>{
                         
                         btnName==="login"?setbtnName("logout"):setbtnName("login");
                     }}>{btnName}</button>
+                    <li>{loggedInUser}</li>
                 </ul>
 
             </div>

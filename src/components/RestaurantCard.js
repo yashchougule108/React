@@ -1,5 +1,7 @@
-
+import { useContext } from "react";
+import userContext from "../utils/userContext"
 export const RestaurantCard=(props)=>{
+    const {loggedInUser}=useContext(userContext)
 
     const {restData}=props;
     const {name,sla,cuisines,avgRating,costForTwo,deliveryTime}=restData?.info;
@@ -11,6 +13,7 @@ export const RestaurantCard=(props)=>{
             <h4>{cuisines.join(", ")}</h4>
             <h4>{avgRating} star</h4>
             <h4>{costForTwo}</h4>
+            <h4>Name:{loggedInUser}</h4>
             {/* <h4>{sla.deliveryTime} min</h4>
  */}
 

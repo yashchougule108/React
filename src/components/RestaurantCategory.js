@@ -5,10 +5,12 @@ const RestaurantCategory=({data,showItems,setShowIndex})=>{
     //const[showRes,setShowRes]=useState(false);
 
 
+
+
     const handleClick=()=>{
-       //setShowRes(!showRes);
-       
+       //setShowRes(!showRes); 
        setShowIndex();
+
     }
 
     return (
