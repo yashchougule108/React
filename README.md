@@ -113,3 +113,16 @@ add button-->dispatch action-->reducer-->redux store-->selector to read
 -unit testing
 -integration testing
 -end to end testing
+
+
+# setting up testing in our app
+-Install react Testing Library
+-Install jest
+-install babel dependencies
+-configure babel
+-configure parcel config file to disable default babel transpilation
+-jest configuration --> npx jest init
+-install jsdom library 
+-install @babel/preset-react - to make jsx work in test cases
+-include @babel/preset-react inside  babel config 
+-install @testing-library/jest-dom
